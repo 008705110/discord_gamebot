@@ -49,7 +49,7 @@ async def open_account(user):
     
     users = await get_bank_data()
 
-fdsfdsfdsfds
+
     if str(user.id) in users:
         return False
     else:
