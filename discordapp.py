@@ -34,15 +34,91 @@ async def beg(ctx):
     user = ctx.author
     await open_account(ctx.author)
 
-    earnings = random.randrange(101)
+    earnings = random.randrange(1000)
     await ctx.send(f"someone gave you {earnings} coins")
     users[str(user.id)]["wallet"] += earnings
+    
+
+
 
     
     with open("mainbank.json","w") as f:
         json.dump(users,f)
 
 
+@client.command()
+async def withdraw(ctx,amount = None):
+    await open_account(ctx.author)
+    if amount == None:
+        await ctx.send("fsdfsd")
+        return 
+    bal = await update_bank(ctx.author)
+
+    amount = int(amount)
+
+    if amount > bal[1]:
+        await ctx.send("error")
+        return
+
+    if amount < 0:
+        await ctx.send("error")
+        return
+
+    await update_bank(ctx.author,amount)
+    await update_bank(ctx.author,-1*amount,"bank")
+
+    await ctx.send(f"you took out {amount}")
+
+@client.command()
+async def deposit(ctx,amount = None):
+    await open_account(ctx.author)
+    if amount == None:
+        await ctx.send("fsdfsd")
+        return 
+    bal = await update_bank(ctx.author)
+
+    amount = int(amount)
+
+    if amount > bal[0]:
+        await ctx.send("123")
+        return
+
+    if amount < 0:
+        await ctx.send("dfsfsdf")
+        return
+
+    await update_bank(ctx.author,-1*amount)
+    await update_bank(ctx.author,amount,"bank")
+
+    await ctx.send(f"jian is a cock sucker {amount}")
+
+@client.command()
+async def send(ctx,member:discord.Member,amount = None):
+    await open_account(ctx.author)
+    await open_account(member)
+    if amount == None:
+        await ctx.send("error")
+        return 
+    bal = await update_bank(ctx.author)
+
+    amount = int(amount)
+
+
+    if amount > bal[1]:
+        await ctx.send("error")
+        return
+    if amount < 0:
+        await ctx.send("error")
+        return
+    if amount.is_integer() == False:
+        await ctx.send("error")
+        return
+
+
+    await update_bank(ctx.author,-1*amount,"bank")
+    await update_bank(member,amount,"bank")
+
+    await ctx.send(f"you gave {amount}")
 
 
 async def open_account(user):
@@ -66,7 +142,15 @@ async def get_bank_data():
         users = json.load(f)
     return users
 
+async def update_bank(user,change = 0, mode = "wallet"):
+    users = await get_bank_data()
+    users[str(user.id)][mode] += change
 
+    with open("mainbank.json", "w") as f:
+        json.dump(users,f)
+
+    bal = [users[str(user.id)]["wallet"],users[str(user.id)]["bank"]]
+    return bal
 
     
 
@@ -76,4 +160,4 @@ async def get_bank_data():
 
 
 
-client.run('ODgxNzc2NjY0NTM3ODgyNzA1.YSxwgw.D0cJ9htfHXCJZLFKF7PuMinOzkA')
+client.run('')
