@@ -158,6 +158,13 @@ async def update_bank(user,change = 0, mode = "wallet"):
 
 
 
+client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
+client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
+client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
+client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
+client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
+client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
+client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
 
 
-client.run('FDSFSDFSDFS')
+client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
