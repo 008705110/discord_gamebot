@@ -46,51 +46,7 @@ async def beg(ctx):
         json.dump(users,f)
 
 
-@client.command()
-async def withdraw(ctx,amount = None):
-    await open_account(ctx.author)
-    if amount == None:
-        await ctx.send("fsdfsd")
-        return 
-    bal = await update_bank(ctx.author)
 
-    amount = int(amount)
-
-    if amount > bal[1]:
-        await ctx.send("error")
-        return
-
-    if amount < 0:
-        await ctx.send("error")
-        return
-
-    await update_bank(ctx.author,amount)
-    await update_bank(ctx.author,-1*amount,"bank")
-
-    await ctx.send(f"you took out {amount}")
-
-@client.command()
-async def deposit(ctx,amount = None):
-    await open_account(ctx.author)
-    if amount == None:
-        await ctx.send("fsdfsd")
-        return 
-    bal = await update_bank(ctx.author)
-
-    amount = int(amount)
-
-    if amount > bal[0]:
-        await ctx.send("123")
-        return
-
-    if amount < 0:
-        await ctx.send("dfsfsdf")
-        return
-
-    await update_bank(ctx.author,-1*amount)
-    await update_bank(ctx.author,amount,"bank")
-
-    await ctx.send(f"jian is a cock sucker {amount}")
 
 @client.command()
 async def send(ctx,member:discord.Member,amount = None):
@@ -159,17 +115,6 @@ async def update_bank(user,change = 0, mode = "wallet"):
 
 
 client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
 
 
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
+
