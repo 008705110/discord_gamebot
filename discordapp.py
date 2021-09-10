@@ -121,6 +121,45 @@ async def send(ctx,member:discord.Member,amount = None):
     await ctx.send(f"you gave {amount}")
 
 
+
+@client.command()
+async def gable(ctx,amount = None):
+    await open_account(ctx.author)
+    if amount == None:
+        await ctx.send("fsdfsd")
+        return 
+    bal = await update_bank(ctx.author)
+
+    amount = int(amount)
+
+    if amount > bal[0]:
+        await ctx.send("123")
+        return
+
+    if amount < 0:
+        await ctx.send("dfsfsdf")
+        return
+    
+    final = []
+    for i in range(3):
+        a = random.choice(["X","O","Q"])
+        final.append(a)
+    
+    
+    await ctx.send(str(final))
+    if final[0] == final[1] or final[0] == final[2] or final[2] == final[1]:
+        await update_bank(ctx.author,2*amount)
+        await ctx.send("you won")
+    else:
+        await update_bank(ctx.author,-1*amount)
+        await ctx.send("you fucken lost")
+
+
+    await update_bank(ctx.author,-1*amount)
+    await update_bank(ctx.author,amount,"bank")
+
+    await ctx.send(f"you lost {amount}")
+
 async def open_account(user):
     
     users = await get_bank_data()
@@ -158,7 +197,10 @@ async def update_bank(user,change = 0, mode = "wallet"):
 
 
 
-client.run('FDSFSDFSfsdfsdfsdfsfsdDFS')
+
+
+
+client.run('ODgxNzc2NjY0NTM3ODgyNzA1.YSxwgw.gV3NnwslOmWQgWZJsoXbq-CyZMc')
 
 
 
